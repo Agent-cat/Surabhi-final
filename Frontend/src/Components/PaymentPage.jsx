@@ -70,11 +70,9 @@ const PaymentPage = () => {
         throw new Error(data.error || "Registration failed");
       }
 
-      // For non-KLU students, show pending message
       if (data.paymentStatus === "pending") {
         setShowApprovalMessage(true);
       } else {
-        // For KLU students, proceed with login
         setToken(data.token);
         setUser({
           fullName: data.fullName,
@@ -93,19 +91,25 @@ const PaymentPage = () => {
 
   if (showApprovalMessage) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900 p-4 sm:px-6 lg:px-8">
-        <div className="bg-white/10 p-4 sm:p-8 rounded-lg backdrop-blur-sm w-full max-w-md text-center">
-          <h2 className="text-2xl sm:text-3xl font-saint-carell text-white mb-4 sm:mb-6">
+      <div className="min-h-screen flex items-center justify-center bg-black p-6">
+        <div className="bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-purple-500/20">
+          <h2 className="text-3xl font-bold text-purple-400 mb-6 text-center">
             Registration Pending
           </h2>
-          <div className="text-white space-y-3 sm:space-y-4 text-sm sm:text-base">
-            <p>Your registration is currently pending admin approval.</p>
-            <p>Please wait while we verify your payment details.</p>
-            <p>You will be notified once your registration is approved.</p>
+          <div className="text-gray-300 space-y-4">
+            <p className="text-center">
+              Your registration is currently pending admin approval.
+            </p>
+            <p className="text-center">
+              Please wait while we verify your payment details.
+            </p>
+            <p className="text-center">
+              You will be notified once your registration is approved.
+            </p>
           </div>
           <button
             onClick={() => navigate("/login")}
-            className="mt-6 sm:mt-8 bg-purple-600 text-white py-2 px-4 sm:px-6 rounded text-sm sm:text-base hover:bg-purple-700 transition duration-300 w-full sm:w-auto"
+            className="mt-8 w-full bg-gradient-to-r from-purple-600 to-purple-800 text-white py-3 px-6 rounded-lg font-medium hover:from-purple-700 hover:to-purple-900 transition duration-300 shadow-lg"
           >
             Go to Login
           </button>
@@ -115,28 +119,28 @@ const PaymentPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 p-4 sm:px-6 lg:px-8">
-      <div className="bg-white/10 p-4 sm:p-8 rounded-lg backdrop-blur-sm w-full max-w-md">
-        <h2 className="text-2xl sm:text-3xl font-saint-carell text-white text-center mb-6 sm:mb-8">
+    <div className="min-h-screen flex items-center justify-center bg-black p-6">
+      <div className="bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-purple-500/20">
+        <h2 className="text-3xl font-bold text-purple-400 text-center mb-8">
           Complete Payment
         </h2>
 
-        <div className="mb-6 sm:mb-8">
+        <div className="bg-black p-6 rounded-xl mb-8">
           <img
             src={qr}
             alt="Payment QR Code"
-            className="w-full max-w-[200px] sm:max-w-xs mx-auto"
+            className="w-64 h-64 mx-auto rounded-lg shadow-lg"
           />
-          <p className="text-white text-center mt-3 sm:mt-4 text-sm sm:text-base">
+          <p className="text-purple-300 text-center mt-4 font-medium">
             Scan QR code to pay ₹500
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label
               htmlFor="transactionId"
-              className="block text-white mb-2 text-sm sm:text-base"
+              className="block text-purple-300 mb-2 font-medium"
             >
               Transaction ID
             </label>
@@ -145,7 +149,7 @@ const PaymentPage = () => {
               id="transactionId"
               value={transactionId}
               onChange={(e) => setTransactionId(e.target.value)}
-              className="w-full px-3 sm:px-4 py-2 rounded bg-black border border-white/20 text-white focus:outline-none focus:border-white text-sm sm:text-base"
+              className="w-full px-4 py-3 rounded-lg bg-black border border-purple-500/30 text-white focus:outline-none focus:border-purple-500 transition duration-200"
               required
               disabled={isLoading}
             />
@@ -154,7 +158,7 @@ const PaymentPage = () => {
           <div>
             <label
               htmlFor="paymentScreenshot"
-              className="block text-white mb-2 text-sm sm:text-base"
+              className="block text-purple-300 mb-2 font-medium"
             >
               Payment Screenshot
             </label>
@@ -163,7 +167,7 @@ const PaymentPage = () => {
               id="paymentScreenshot"
               accept="image/*"
               onChange={(e) => setPaymentImage(e.target.files[0])}
-              className="w-full px-3 sm:px-4 py-2 rounded bg-black border border-white/20 text-white focus:outline-none focus:border-white text-sm sm:text-base"
+              className="w-full px-4 py-3 rounded-lg bg-black border border-purple-500/30 text-white focus:outline-none focus:border-purple-500 transition duration-200"
               required
               disabled={isLoading}
             />
@@ -171,10 +175,17 @@ const PaymentPage = () => {
 
           <button
             type="submit"
-            className="w-full bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700 transition duration-300 disabled:opacity-50 text-sm sm:text-base mt-4 sm:mt-6"
+            className="w-full bg-gradient-to-r from-purple-600 to-purple-800 text-white py-3 px-6 rounded-lg font-medium hover:from-purple-700 hover:to-purple-900 transition duration-300 disabled:opacity-50 shadow-lg mt-8"
             disabled={isLoading}
           >
-            {isLoading ? "Processing..." : "Complete Registration"}
+            {isLoading ? (
+              <div className="flex items-center justify-center">
+                <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-white mr-2"></div>
+                Processing...
+              </div>
+            ) : (
+              "Complete Registration"
+            )}
           </button>
         </form>
       </div>

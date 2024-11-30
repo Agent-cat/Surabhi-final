@@ -6,7 +6,10 @@ const ProtectedRoute = ({ children }) => {
   const location = useLocation();
 
   if (!token) {
-    if (location.pathname === "/registered-events") {
+    if (
+      location.pathname === "/registered-events" ||
+      location.pathname === "/events"
+    ) {
       return <Navigate to="/please-login" />;
     }
     return <Navigate to="/login" />;

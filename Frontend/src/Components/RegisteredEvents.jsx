@@ -89,13 +89,14 @@ const RegisteredEvents = () => {
 
   return (
     <div className="min-h-screen bg-black text-white p-8">
+      <div className="pt-12"></div>
       <div className="max-w-6xl mx-auto">
         <motion.h1
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           className="text-4xl font-bold text-purple-400 mb-8 text-center"
         >
-          My Registered Events
+          Registered Events
         </motion.h1>
 
         <div className="mb-8">
