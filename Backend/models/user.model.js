@@ -49,6 +49,12 @@ const userSchema = new mongoose.Schema(
     },
     paymentId: String,
     paymentScreenshot: String,
+    state: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
     registrationData: {
       type: {
         originalPassword: String,

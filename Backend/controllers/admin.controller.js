@@ -31,10 +31,7 @@ export const updateRegistration = async (req, res) => {
     }
 
     if (status === "approved") {
-      // Get the plain password from registrationData
       const plainPassword = registration.registrationData?.originalPassword;
-
-      console.log("Debug - Plain password:", plainPassword); // Debug log
 
       if (!plainPassword) {
         return res
@@ -42,23 +39,13 @@ export const updateRegistration = async (req, res) => {
           .json({ error: "No password found in registration data" });
       }
 
-      // Hash the password
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(plainPassword, salt);
 
-      console.log("Debug - Password being set:", {
-        plainPassword,
-        hashedPassword,
-      });
-
-      // Update user
       registration.password = hashedPassword;
       registration.paymentStatus = "approved";
       registration.isApproved = true;
-
-      // Save and log the result
-      const savedUser = await registration.save();
-      console.log("Debug - Saved user password:", savedUser.password);
+      await registration.save();
     } else if (status === "rejected") {
       registration.paymentStatus = "rejected";
       registration.isApproved = false;

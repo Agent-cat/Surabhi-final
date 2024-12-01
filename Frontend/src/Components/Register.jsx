@@ -14,9 +14,42 @@ const Register = () => {
     college: "kluniversity",
     collegeId: "",
     otherCollegeName: "",
+    state: "",
+    address: "",
   });
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const indianStates = [
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
+  ];
 
   const handleVideoLoad = () => {
     setIsVideoLoaded(true);
@@ -218,6 +251,44 @@ const Register = () => {
                 </p>
               </>
             )}
+          </div>
+
+          <div>
+            <label htmlFor="state" className="block text-white mb-2">
+              State
+            </label>
+            <select
+              id="state"
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded bg-black border border-white/20 text-white focus:outline-none focus:border-white"
+              required
+              disabled={isLoading}
+            >
+              <option value="">Select State</option>
+              {indianStates.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="address" className="block text-white mb-2">
+              Address
+            </label>
+            <textarea
+              id="address"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded bg-black border border-white/20 text-white focus:outline-none focus:border-white"
+              required
+              disabled={isLoading}
+              rows="3"
+            />
           </div>
 
           <button

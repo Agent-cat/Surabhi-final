@@ -78,35 +78,35 @@ const Navbar = () => {
         className="flex items-center gap-2 text-white hover:text-gray-200 transition-colors"
       >
         <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
-          {user.fullName.charAt(0)}
+          {user?.fullName?.charAt(0) || "?"}
         </div>
-        <span className="font-medium">{user.fullName}</span>
+        <span className="font-medium">{user?.fullName || "User"}</span>
       </button>
 
       {isProfileOpen && (
         <div className="absolute right-0 mt-3 w-72 bg-black/80 backdrop-blur-lg rounded-xl shadow-2xl py-2 z-50 border border-white/10">
           <div className="px-6 py-4 border-b border-white/10">
-            <p className="text-lg font-semibold text-white">{user.fullName}</p>
-            <p className="text-sm text-gray-300">{user.email}</p>
+            <p className="text-lg font-semibold text-white">{user?.fullName}</p>
+            <p className="text-sm text-gray-300">{user?.email}</p>
           </div>
           <div className="px-6 py-4 border-b border-white/10">
             <p className="text-sm text-gray-300 flex justify-between">
               <span>College:</span>
-              <span className="text-white">{user.college}</span>
+              <span className="text-white">{user?.college}</span>
             </p>
             <p className="text-sm text-gray-300 flex justify-between mt-2">
               <span>ID:</span>
-              <span className="text-white">{user.collegeId}</span>
+              <span className="text-white">{user?.collegeId}</span>
             </p>
-            {user.college !== "kluniversity" && (
+            {user?.college !== "kluniversity" && (
               <p className="text-sm text-gray-300 flex justify-between mt-2">
                 <span>Payment Status:</span>
                 <span
                   className={`text-${
-                    user.paymentStatus === "approved" ? "green" : "yellow"
+                    user?.paymentStatus === "approved" ? "green" : "yellow"
                   }-500`}
                 >
-                  {user.paymentStatus}
+                  {user?.paymentStatus}
                 </span>
               </p>
             )}
@@ -128,11 +128,13 @@ const Navbar = () => {
     <div className="border-t border-white/10 pt-6 mt-6">
       <div className="flex items-center gap-4 mb-6">
         <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg">
-          {user.fullName.charAt(0)}
+          {user?.fullName?.charAt(0) || "?"}
         </div>
         <div>
-          <p className="text-white font-semibold text-lg">{user.fullName}</p>
-          <p className="text-gray-300 text-sm">{user.email}</p>
+          <p className="text-white font-semibold text-lg">
+            {user?.fullName || "User"}
+          </p>
+          <p className="text-gray-300 text-sm">{user?.email}</p>
         </div>
       </div>
       <button

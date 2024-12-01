@@ -12,6 +12,8 @@ export const register = async (req, res) => {
       fullName,
       paymentId,
       paymentScreenshot,
+      state,
+      address,
     } = req.body;
 
     const existingUser = await User.findOne({ email });
@@ -29,6 +31,8 @@ export const register = async (req, res) => {
         college,
         collegeId,
         fullName,
+        state,
+        address,
         paymentStatus: "approved",
         isApproved: true,
       });
@@ -43,6 +47,8 @@ export const register = async (req, res) => {
         college: newUser.college,
         collegeId: newUser.collegeId,
         fullName: newUser.fullName,
+        state: newUser.state,
+        address: newUser.address,
         paymentStatus: newUser.paymentStatus,
         role: newUser.role,
         token,
@@ -60,6 +66,8 @@ export const register = async (req, res) => {
       college,
       collegeId,
       fullName,
+      state,
+      address,
       paymentId,
       paymentScreenshot,
       paymentStatus: "pending",
@@ -138,6 +146,8 @@ export const login = async (req, res) => {
       college: user.college,
       collegeId: user.collegeId,
       fullName: user.fullName,
+      state: user.state,
+      address: user.address,
       role: user.role,
       token,
     });
