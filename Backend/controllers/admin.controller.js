@@ -59,7 +59,6 @@ export const updateRegistration = async (req, res) => {
       paymentStatus: registration.paymentStatus,
     });
   } catch (error) {
-    console.error("Error in updateRegistration:", error);
     res.status(500).json({ error: error.message });
   }
 };
