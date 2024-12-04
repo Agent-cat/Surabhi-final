@@ -426,11 +426,14 @@ const AdminPanel = () => {
 
   const fetchEvents = useCallback(async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/events", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await fetch(
+        "https://surabhi-final.onrender.com/api/events",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch events");
@@ -473,7 +476,7 @@ const AdminPanel = () => {
   const handleApproval = async (userId, status) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/registrations/${userId}`,
+        `https://surabhi-final.onrender.com/api/admin/registrations/${userId}`,
         {
           method: "PUT",
           headers: {
@@ -502,7 +505,7 @@ const AdminPanel = () => {
   const handleDeleteEvent = async (categoryId, eventId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/events/${categoryId}/events/${eventId}`,
+        `https://surabhi-final.onrender.com/api/events/${categoryId}/events/${eventId}`,
         {
           method: "DELETE",
           headers: {
@@ -537,8 +540,8 @@ const AdminPanel = () => {
 
         const response = await fetch(
           editingEvent
-            ? `http://localhost:5000/api/events/${selectedCategory}/events/${editingEvent._id}`
-            : `http://localhost:5000/api/events/${selectedCategory}/events`,
+            ? `https://surabhi-final.onrender.com/api/events/${selectedCategory}/events/${editingEvent._id}`
+            : `https://surabhi-final.onrender.com/api/events/${selectedCategory}/events`,
           {
             method: editingEvent ? "PUT" : "POST",
             headers: {
@@ -606,7 +609,7 @@ const AdminPanel = () => {
 
       try {
         const response = await fetch(
-          "http://localhost:5000/api/events/category",
+          "https://surabhi-final.onrender.com/api/events/category",
           {
             method: "POST",
             headers: {
@@ -639,7 +642,7 @@ const AdminPanel = () => {
   const handleUpdateCategory = useCallback(async (categoryId, newName) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/events/category/${categoryId}`,
+        `https://surabhi-final.onrender.com/api/events/category/${categoryId}`,
         {
           method: "PUT",
           headers: {
@@ -674,7 +677,7 @@ const AdminPanel = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/events/category/${categoryId}`,
+        `https://surabhi-final.onrender.com/api/events/category/${categoryId}`,
         {
           method: "DELETE",
           headers: {
