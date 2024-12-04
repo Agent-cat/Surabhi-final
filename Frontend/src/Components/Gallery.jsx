@@ -5,364 +5,296 @@ import poster2 from "../assets/2024.jpg";
 import poster3 from "../assets/2025.jpg";
 
 const Gallery = () => {
-  const [selectedYear, setSelectedYear] = useState("2024");
+  const [selectedEvent, setSelectedEvent] = useState("natayaka");
   const [selectedImage, setSelectedImage] = useState(null);
-  const [photos2025, setPhotos2025] = useState([
-    {
-      caption: "Coming Soon Preview",
-      description: "A glimpse into what's coming in 2025",
-      image: poster1,
-    },
-    {
-      caption: "Team Planning Session",
-      description: "Behind the scenes of our planning",
-      image: poster2,
-    },
-    {
-      caption: "Getting Ready for 2025",
-      description: "Preparations in full swing",
-      image: poster3,
-    },
-  ]);
 
-  const photos2024 = [
-    {
-      caption: "Grand Opening Ceremony",
-      description: "The spectacular start of our event",
-      image: poster1,
-    },
-    {
-      caption: "Cultural Dance Show",
-      description: "Celebrating diversity through dance",
-      image: poster2,
-    },
-    {
-      caption: "Robotics Workshop",
-      description: "Hands-on technology learning",
-      image: poster3,
-    },
-    {
-      caption: "Coding Competition",
-      description: "Young minds solving challenges",
-      image: poster1,
-    },
-    {
-      caption: "Prize Distribution",
-      description: "Celebrating achievements",
-      image: poster2,
-    },
-    {
-      caption: "Enthusiastic Participants",
-      description: "The energy of our community",
-      image: poster3,
-    },
-    {
-      caption: "Grand Opening Ceremony",
-      description: "The spectacular start of our event",
-      image: poster1,
-    },
-    {
-      caption: "Cultural Dance Show",
-      description: "Celebrating diversity through dance",
-      image: poster2,
-    },
-    {
-      caption: "Robotics Workshop",
-      description: "Hands-on technology learning",
-      image: poster3,
-    },
-    {
-      caption: "Coding Competition",
-      description: "Young minds solving challenges",
-      image: poster1,
-    },
-    {
-      caption: "Prize Distribution",
-      description: "Celebrating achievements",
-      image: poster2,
-    },
-    {
-      caption: "Enthusiastic Participants",
-      description: "The energy of our community",
-      image: poster3,
-    },
-  ];
-
-  const captions = [
-    "Amazing Moment",
-    "Special Memory",
-    "Wonderful Time",
-    "Great Experience",
-    "Unforgettable Event",
-    "Beautiful Capture",
-  ];
-
-  const descriptions = [
-    "A magical moment captured in time",
-    "Creating memories that last forever",
-    "Sharing joy and happiness",
-    "An incredible experience to remember",
-    "Making history together",
-    "Celebrating life's special moments",
-  ];
-
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const files = Array.from(e.dataTransfer.files);
-    files.forEach((file) => {
-      if (file.type.startsWith("image/")) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const randomCaption =
-            captions[Math.floor(Math.random() * captions.length)];
-          const randomDescription =
-            descriptions[Math.floor(Math.random() * descriptions.length)];
-          const newPhoto = {
-            caption: randomCaption,
-            description: randomDescription,
-            image: e.target.result,
-          };
-          setPhotos2025((prev) => [...prev, newPhoto]);
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-  };
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
+  const events = {
+    natayaka: [
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+    ],
+    chitrakala: [
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+    ],
+    nritya: [
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+    ],
+    raaga: [
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+    ],
+    CineCarnival: [
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+    ],
+    sahithya: [
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+    ],
+    vastrashala: [
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+      { image: poster1 },
+      { image: poster2 },
+      { image: poster3 },
+    ],
   };
 
   return (
     <div className="min-h-screen bg-black py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-6xl md:text-4xl text-center font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent mb-7">
+      <div className="max-w-7xl mx-auto pt-20">
+        {" "}
+        {/* Added pt-20 for more top padding */}
+        <motion.h1
+          className="text-6xl md:text-7xl text-center font-playfair bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent mb-20" /* Changed font and increased bottom margin */
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           Gallery
-        </h1>
-
-        <div className="flex justify-center gap-4 mb-12">
-          {["2024", "2025"].map((year) => (
+        </motion.h1>
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {Object.keys(events).map((eventName, index) => (
             <motion.button
-              key={year}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setSelectedYear(year)}
-              className={`px-8 py-3 rounded-lg text-xl font-medium transition-all duration-200 ${
-                selectedYear === year
-                  ? "bg-purple-600 text-white shadow-lg"
-                  : "bg-gray-900 text-purple-300 hover:bg-gray-800 border border-purple-800"
-              }`}
+              key={eventName}
+              className={`px-6 py-3 rounded-full text-lg font-medium transition-all relative
+                ${
+                  selectedEvent === eventName
+                    ? "bg-purple-600 text-white shadow-lg shadow-purple-500/50"
+                    : "bg-purple-900/30 text-purple-300 hover:bg-purple-800/40"
+                }
+                before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full 
+                before:border-2 before:border-purple-500 before:rounded-full before:opacity-0 
+                hover:before:opacity-100 before:transition-all before:duration-300 before:scale-110
+                hover:before:scale-100`}
+              onClick={() => setSelectedEvent(eventName)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {year}
+              {eventName.replace(/([A-Z])/g, " $1").trim()}
             </motion.button>
           ))}
         </div>
-
-        {selectedYear === "2025" && (
+        <AnimatePresence mode="wait">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            key={selectedEvent}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-12 bg-gray-900 rounded-xl p-8 border border-purple-900"
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col gap-8"
           >
-            <div className="text-center">
-              <p className="text-xl text-purple-300 mb-3">Share Your Moments</p>
-              <p className="text-gray-400 mb-4">
-                Drag and drop your content or
-              </p>
-              <label className="inline-block bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg cursor-pointer transition-colors duration-200">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                      const reader = new FileReader();
-                      reader.onload = (e) => {
-                        const randomCaption =
-                          captions[Math.floor(Math.random() * captions.length)];
-                        const randomDescription =
-                          descriptions[
-                            Math.floor(Math.random() * descriptions.length)
-                          ];
-                        const newPhoto = {
-                          caption: randomCaption,
-                          description: randomDescription,
-                          image: e.target.result,
-                        };
-                        setPhotos2025((prev) => [...prev, newPhoto]);
-                      };
-                      reader.readAsDataURL(file);
-                    }
-                  }}
-                  className="hidden"
-                />
-                Choose Files
-              </label>
-            </div>
-          </motion.div>
-        )}
+            {[0, 1, 2, 3].map((rowIndex) => {
+              const items = events[selectedEvent].slice(
+                rowIndex * 3,
+                (rowIndex + 1) * 3
+              );
 
-        <div className="flex flex-col gap-8">
-          {[0, 1, 2, 3].map((rowIndex) => {
-            const items = (
-              selectedYear === "2024" ? photos2024 : photos2025
-            ).slice(rowIndex * 3, (rowIndex + 1) * 3);
-
-            return (
-              <div key={rowIndex} className="grid grid-cols-12 gap-6">
-                {rowIndex % 2 === 0 ? (
-                  <>
-                    <motion.div
-                      className="col-span-8 aspect-video bg-gradient-to-br from-purple-900/30 to-gray-900 rounded-2xl overflow-hidden relative group cursor-pointer"
-                      whileHover={{ scale: 1.02 }}
-                      onClick={() => setSelectedImage(items[0])}
-                    >
-                      {items[0]?.image && (
-                        <img
-                          src={items[0].image}
-                          alt={items[0].caption}
-                          className="absolute inset-0 w-full h-full object-cover"
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-8 flex flex-col justify-end">
-                        <h3 className="text-2xl font-bold text-purple-300">
-                          {items[0]?.caption}
-                        </h3>
-                        <p className="text-gray-400 mt-2">
-                          {items[0]?.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                    <motion.div
-                      className="col-span-4 aspect-square bg-gradient-to-br from-purple-900/30 to-gray-900 rounded-2xl overflow-hidden relative group cursor-pointer"
-                      whileHover={{ scale: 1.02 }}
-                      onClick={() => setSelectedImage(items[1])}
-                    >
-                      {items[1]?.image && (
-                        <img
-                          src={items[1].image}
-                          alt={items[1].caption}
-                          className="absolute inset-0 w-full h-full object-cover"
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 flex flex-col justify-end">
-                        <h3 className="text-xl font-bold text-purple-300">
-                          {items[1]?.caption}
-                        </h3>
-                        <p className="text-gray-400 mt-2">
-                          {items[1]?.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </>
-                ) : (
-                  <>
-                    <motion.div
-                      className="col-span-4 aspect-square bg-gradient-to-br from-purple-900/30 to-gray-900 rounded-2xl overflow-hidden relative group cursor-pointer"
-                      whileHover={{ scale: 1.02 }}
-                      onClick={() => setSelectedImage(items[0])}
-                    >
-                      {items[0]?.image && (
-                        <img
-                          src={items[0].image}
-                          alt={items[0].caption}
-                          className="absolute inset-0 w-full h-full object-cover"
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 flex flex-col justify-end">
-                        <h3 className="text-xl font-bold text-purple-300">
-                          {items[0]?.caption}
-                        </h3>
-                        <p className="text-gray-400 mt-2">
-                          {items[0]?.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                    <motion.div
-                      className="col-span-8 aspect-video bg-gradient-to-br from-purple-900/30 to-gray-900 rounded-2xl overflow-hidden relative group cursor-pointer"
-                      whileHover={{ scale: 1.02 }}
-                      onClick={() => setSelectedImage(items[1])}
-                    >
-                      {items[1]?.image && (
-                        <img
-                          src={items[1].image}
-                          alt={items[1].caption}
-                          className="absolute inset-0 w-full h-full object-cover"
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-8 flex flex-col justify-end">
-                        <h3 className="text-2xl font-bold text-purple-300">
-                          {items[1]?.caption}
-                        </h3>
-                        <p className="text-gray-400 mt-2">
-                          {items[1]?.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 z-50"
-          >
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              className="relative max-w-6xl  w-full max-h-[80vh]  rounded-2xl overflow-hidden"
-            >
-              <img
-                src={selectedImage.image}
-                alt={selectedImage.caption}
-                className="w-full h-full object-contain"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
-                <h3 className="text-2xl font-bold text-purple-300">
-                  {selectedImage.caption}
-                </h3>
-                <p className="text-gray-400 mt-2">
-                  {selectedImage.description}
-                </p>
-              </div>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedImage(null);
-                }}
-                className="absolute top-4 right-4 text-white hover:text-purple-400 transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              return (
+                <motion.div
+                  key={rowIndex}
+                  className="grid grid-cols-12 gap-6"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: rowIndex * 0.1 }}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </motion.div>
+                  {rowIndex % 2 === 0 ? (
+                    <>
+                      <motion.div
+                        className="col-span-8 aspect-video bg-gradient-to-br from-purple-900/30 to-gray-900 rounded-2xl overflow-hidden relative group cursor-pointer"
+                        whileHover={{
+                          scale: 1.02,
+                          boxShadow: "0 0 20px rgba(147, 51, 234, 0.2)",
+                        }}
+                        transition={{ duration: 0.3 }}
+                        onClick={() => setSelectedImage(items[0]?.image)}
+                      >
+                        {items[0]?.image && (
+                          <img
+                            src={items[0].image}
+                            alt="Event"
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        )}
+                      </motion.div>
+                      <motion.div
+                        className="col-span-4 aspect-square bg-gradient-to-br from-purple-900/30 to-gray-900 rounded-2xl overflow-hidden relative group cursor-pointer"
+                        whileHover={{
+                          scale: 1.02,
+                          boxShadow: "0 0 20px rgba(147, 51, 234, 0.2)",
+                        }}
+                        transition={{ duration: 0.3 }}
+                        onClick={() => setSelectedImage(items[1]?.image)}
+                      >
+                        {items[1]?.image && (
+                          <img
+                            src={items[1].image}
+                            alt="Event"
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        )}
+                      </motion.div>
+                    </>
+                  ) : (
+                    <>
+                      <motion.div
+                        className="col-span-4 aspect-square bg-gradient-to-br from-purple-900/30 to-gray-900 rounded-2xl overflow-hidden relative group cursor-pointer"
+                        whileHover={{
+                          scale: 1.02,
+                          boxShadow: "0 0 20px rgba(147, 51, 234, 0.2)",
+                        }}
+                        transition={{ duration: 0.3 }}
+                        onClick={() => setSelectedImage(items[0]?.image)}
+                      >
+                        {items[0]?.image && (
+                          <img
+                            src={items[0].image}
+                            alt="Event"
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        )}
+                      </motion.div>
+                      <motion.div
+                        className="col-span-8 aspect-video bg-gradient-to-br from-purple-900/30 to-gray-900 rounded-2xl overflow-hidden relative group cursor-pointer"
+                        whileHover={{
+                          scale: 1.02,
+                          boxShadow: "0 0 20px rgba(147, 51, 234, 0.2)",
+                        }}
+                        transition={{ duration: 0.3 }}
+                        onClick={() => setSelectedImage(items[1]?.image)}
+                      >
+                        {items[1]?.image && (
+                          <img
+                            src={items[1].image}
+                            alt="Event"
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        )}
+                      </motion.div>
+                    </>
+                  )}
+                </motion.div>
+              );
+            })}
           </motion.div>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
+              onClick={() => setSelectedImage(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.5 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.5 }}
+                className="relative max-w-5xl w-full max-h-[90vh]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src={selectedImage}
+                  alt="Full size"
+                  className="w-full h-full object-contain rounded-lg"
+                />
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-4 right-4 text-white  rounded-full p-2 hover:scale-150  transition-all duration-300"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };

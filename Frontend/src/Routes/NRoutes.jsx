@@ -22,14 +22,7 @@ const NRoutes = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/gallery" element={<Gallery />} />
-      <Route
-        path="/events"
-        element={
-          <ProtectedRoute>
-            <Events />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/events" element={<Events />} />
       <Route path="/team" element={<Team />} />
       <Route
         path="/login"

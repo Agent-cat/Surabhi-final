@@ -26,7 +26,7 @@ const RegisteredEvents = () => {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/events/registered",
+        "https://surabhi-final.onrender.com/api/events/registered",
         {
           headers: {
             Authorization: `Bearer ${token}`,

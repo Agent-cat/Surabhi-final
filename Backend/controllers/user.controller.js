@@ -55,7 +55,6 @@ export const register = async (req, res) => {
       });
     }
 
-    // For non-KL university users, store a temporary password
     const tempPassword = "pending_" + Math.random().toString(36).slice(2);
     const salt = await bcrypt.genSalt(10);
     const hashedTempPassword = await bcrypt.hash(tempPassword, salt);

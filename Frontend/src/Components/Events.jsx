@@ -23,7 +23,9 @@ const Events = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/events");
+      const response = await axios.get(
+        "https://surabhi-final.onrender.com/api/events"
+      );
       const data = response.data;
       setEvents(data);
     } catch (error) {
@@ -68,7 +70,7 @@ const Events = () => {
       }
 
       const response = await axios.put(
-        `http://localhost:5000/api/events/${selectedEvent.categoryId}/events/${selectedEvent._id}/register`,
+        `https://surabhi-final.onrender.com/api/events/${selectedEvent.categoryId}/events/${selectedEvent._id}/register`,
         {},
         {
           headers: {

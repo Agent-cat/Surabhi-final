@@ -268,7 +268,7 @@ const Home = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto z-50 text-center px-4"
           >
-            Surabhi 2025 is a two-day national cultural fest at KL University
+            Surabhi 2025 is a two-day National cultural fest at KL University
             that highlights student creativity through music, dance, drama, and
             artistic expressions. With renowned artists and exceptional student
             talent, this event embodies diversity in a supportive and vibrant

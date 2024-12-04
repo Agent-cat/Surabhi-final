@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { navLinks, adminNavLink } from "../Constants/Constants";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { getUser, removeToken, removeUser } from "../utils/auth";
 import { useNavigate } from "react-router-dom";
-
+import logo from "../assets/surabhi.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(getUser());
@@ -150,11 +150,14 @@ const Navbar = () => {
     <div className="fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-sm p-4">
       <div className="flex justify-between items-center">
         {/* Logo moved to left */}
-        <div className="flex gap-2 items-center">
-          <h1 className="text-2xl font-bold font-saint-carell text-white hover:text-gray-300 transition-colors">
-            SURABHI
-          </h1>
-        </div>
+        <Link to="/" className="flex gap-2 items-center">
+          <img src={logo} alt="logo" className="w-10 h-12" />
+          <div className="flex gap-2 items-center">
+            <h1 className="text-2xl font-bold font-saint-carell text-white hover:text-gray-300 transition-colors">
+              SURABHI
+            </h1>
+          </div>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex gap-8 font-semibold">
